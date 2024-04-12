@@ -6,10 +6,13 @@ import Link from "next/link";
 import Footer from "@/components/Footer";
 
 const fetchProducts = async () => {
-  const response = await fetch("http://localhost:3000/api/products?limit=8", {
-    method: "GET",
-    cache: "no-store",
-  });
+  const response = await fetch(
+    process.env.NEXT_PUBLIC_BASE_URL + `/api/products?limit=8`,
+    {
+      method: "GET",
+      cache: "no-store",
+    }
+  );
 
   const responseJson: MyResponse<ProductType[]> = await response.json();
 

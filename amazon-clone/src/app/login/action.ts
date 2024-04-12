@@ -25,7 +25,9 @@ export const loginHandler = async (formData: FormData) => {
     const errMessage = parsedData.error.issues[0].message;
     const errFinalMessage = `${errPath} - ${errMessage}`;
 
-    return redirect(`http://localhost:3000/login?error=${errFinalMessage}`);
+    return redirect(
+      process.env.NEXT_PUBLIC_BASE_URL + `/login?error=${errFinalMessage}`
+    );
   }
 
   const user = await findUserByEmail(parsedData.data.email);
@@ -33,7 +35,9 @@ export const loginHandler = async (formData: FormData) => {
   if (!user || !comparePassword(parsedData.data.password, user.password)) {
     const errFinalMessage = `Invalid email/password`;
 
-    return redirect(`http://localhost:3000/login?error=${errFinalMessage}`);
+    return redirect(
+      process.env.NEXT_PUBLIC_BASE_URL + `/login?error=${errFinalMessage}`
+    );
   }
 
   const payload = {
@@ -51,5 +55,5 @@ export const loginHandler = async (formData: FormData) => {
     sameSite: "strict",
   });
 
-  return redirect(`http://localhost:3000`);
+  return redirect(`${process.env.NEXT_PUBLIC_BASE_URL}`);
 };

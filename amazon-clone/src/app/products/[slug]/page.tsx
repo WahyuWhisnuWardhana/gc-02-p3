@@ -10,10 +10,13 @@ const DetailPage = async (props: Props) => {
   const slug = props.params.slug;
 
   const fetchProducts = async () => {
-    const response = await fetch(`http://localhost:3000/api/products/${slug}`, {
-      method: "GET",
-      cache: "no-store",
-    });
+    const response = await fetch(
+      process.env.NEXT_PUBLIC_BASE_URL + `/api/products/${slug}`,
+      {
+        method: "GET",
+        cache: "no-store",
+      }
+    );
 
     const responseJson: MyResponse<ProductType> = await response.json();
 

@@ -14,7 +14,8 @@ const ProductsPage = () => {
 
   async function fetchProducts() {
     const response = await fetch(
-      `http://localhost:3000/api/products?search=${search}&limit=${limit}`,
+      process.env.NEXT_PUBLIC_BASE_URL +
+        `/api/products?search=${search}&limit=${limit}`,
       {
         method: "GET",
         cache: "no-store",

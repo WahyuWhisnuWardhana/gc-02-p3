@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import { MyResponse } from "@/types";
 export const registerHandler = async (formData: FormData) => {
   "use server";
-  const response = await fetch("http://localhost:3000/api/users", {
+  const response = await fetch(process.env.BASE_URL + "/api/users", {
     method: "POST",
     body: JSON.stringify({
       name: formData.get("name"),
